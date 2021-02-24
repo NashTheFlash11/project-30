@@ -20,18 +20,22 @@ class Box{
     display(){
         var pos = this.body.position;
 
-        push();
-        translate(pos.x, pos.y);
-        fill("brown");
-        rectMode(CENTER);
-        rect(0, 0, this.width, this.height);
-        if(this.body.speed > 3){
-            
-            this.visibility = this.visibility - 5;
-            tint(255, this.visibility);
-            World.remove(world,this.body);
+        if(this.body.speed < 3){
+            push();
+            translate(pos.x, pos.y);
+            fill("brown");
+            rectMode(CENTER);
+            rect(0, 0, this.width, this.height);
+            pop();
         }
-        pop();
+
+        else{
+            World.remove(world,this.body);
+            
+            push();
+            this.visibility = this.visibility - 5;
+            pop();
+        }
         
     }
 }
